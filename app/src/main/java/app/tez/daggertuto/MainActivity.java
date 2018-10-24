@@ -10,15 +10,16 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
+import app.tez.daggertuto.di.PrefModule;
+import app.tez.daggertuto.utils.SharedPrefsUtils;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    @Inject SharedPreferences prefs;
+    @Inject SharedPrefsUtils prefs;
     @Inject Context context;
     @Inject Resources res;
-
-    private TextView mTextview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
         ((DaggerTutoApplication) getApplication()).getTutoComponent().inject(this);
 
-        Log.d(TAG, "onCreate: value before the change "+ prefs.getInt("Number", 0));
+        Log.d(TAG, "onCreate: value before the change " + prefs.getNumber());
 
-        prefs.edit().putInt("Number", 6).apply();
+        prefs.putNumber(6);
 
-        Log.d(TAG, "onCreate: value after the change "+ prefs.getInt("Number", 0));
+        Log.d(TAG, "onCreate: value after the change " + prefs.getNumber());
 
-        mTextview = (TextView) findViewById(R.id.tv);
-        mTextview.setBackgroundColor(res.getColor(android.R.color.darker_gray));
+        TextView textview = (TextView) findViewById(R.id.tv);
+        textview.setBackgroundColor(res.getColor(android.R.color.darker_gray));
     }
 }

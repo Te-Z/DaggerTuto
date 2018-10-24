@@ -1,7 +1,9 @@
-package app.tez.daggertuto;
+package app.tez.daggertuto.di;
 
 import javax.inject.Singleton;
 
+import app.tez.daggertuto.DaggerTutoApplication;
+import app.tez.daggertuto.MainActivity;
 import dagger.Component;
 
 @Singleton
