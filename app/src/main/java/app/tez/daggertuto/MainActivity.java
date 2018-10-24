@@ -11,6 +11,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import app.tez.daggertuto.di.PrefModule;
+import app.tez.daggertuto.utils.DateUtils;
 import app.tez.daggertuto.utils.SharedPrefsUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Inject SharedPrefsUtils prefs;
     @Inject Context context;
     @Inject Resources res;
+    @Inject DateUtils date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: value after the change " + prefs.getNumber());
 
         TextView textview = (TextView) findViewById(R.id.tv);
-        textview.setBackgroundColor(res.getColor(android.R.color.darker_gray));
+        textview.setBackgroundColor(res.getColor(android.R.color.holo_blue_bright));
+        textview.setText(date.getCurrentDate());
     }
 }
