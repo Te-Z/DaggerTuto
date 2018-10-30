@@ -4,9 +4,10 @@ import android.app.Application;
 
 import java.util.Calendar;
 
+import app.tez.daggertuto.di.AppModule;
 import app.tez.daggertuto.di.DaggerTutoComponent;
-import app.tez.daggertuto.di.DateModule;
-import app.tez.daggertuto.di.PrefModule;
+import app.tez.daggertuto.di.StorageModule;
+import app.tez.daggertuto.di.UtilsModule;
 import app.tez.daggertuto.di.TutoComponent;
 
 public class DaggerTutoApplication extends Application {
@@ -18,8 +19,9 @@ public class DaggerTutoApplication extends Application {
         super.onCreate();
 
         tutoComponent = DaggerTutoComponent.builder()
-                .prefModule(new PrefModule(this))
-                .dateModule(new DateModule(Calendar.getInstance()))
+                .appModule(new AppModule(this))
+                .storageModule(new StorageModule())
+                .utilsModule(new UtilsModule())
                 .build();
 
         tutoComponent.inject(this);

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.inject.Singleton;
 
+import app.tez.daggertuto.utils.DateUtils;
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,13 +14,11 @@ import dagger.Provides;
  */
 
 @Module
-public class DateModule {
-
-    private final Calendar cal;
-
-    public DateModule(Calendar cal) { this.cal = cal; }
+public class UtilsModule {
 
     @Provides
     @Singleton
-    public Date providesCurrentDate(){ return cal.getTime(); }
+    public DateUtils provideDateUtils(){
+        return new DateUtils();
+    }
 }

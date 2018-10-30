@@ -10,16 +10,7 @@ import javax.inject.Inject;
  */
 public class DateUtils {
 
-    private Date mDate;
-    private SimpleDateFormat formatter;
-
-    @Inject
-    public DateUtils(Date date) {
-        this.mDate = date;
-        formatter = new SimpleDateFormat("dd/MM/yyyy");
-    }
-
-    public String getCurrentDate(){
-        return formatter.format(mDate);
+    public Date getCurrentDate(){
+        return new Date();
     }
 }

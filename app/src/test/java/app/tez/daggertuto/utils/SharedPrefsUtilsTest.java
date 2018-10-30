@@ -3,19 +3,19 @@ package app.tez.daggertuto.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import javax.inject.Inject;
-
 /**
- * Created by Terence Zafindratafa on 24/10/2018
+ * Created by Terence Zafindratafa on 29/10/2018
  */
-public class SharedPrefsUtils {
+public class SharedPrefsUtilsTest extends SharedPrefsUtils {
 
     private static final String MY_PREF = "MY_PREF";
     private static final String KEY_CURRENT_EMAIL = "KEY_CURRENT_EMAIL";
     private SharedPreferences prefs;
 
-    public SharedPrefsUtils(Context context){
+    public SharedPrefsUtilsTest(Context context) {
+        super(context);
         prefs = context.getSharedPreferences(MY_PREF, Context.MODE_PRIVATE);
+        saveCurrentEmail("jon_snow@gmail.com");
     }
 
     public void saveCurrentEmail(String email){
