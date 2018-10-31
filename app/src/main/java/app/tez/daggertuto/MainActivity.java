@@ -1,10 +1,7 @@
 package app.tez.daggertuto;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         ((DaggerTutoApplication) getApplication()).getTutoComponent().inject(this);
 
-        final TextView textview = (TextView) findViewById(R.id.tv);
+        final TextView textview = (TextView) findViewById(R.id.activity_main_textview);
         textview.setText(dateUtils.getCurrentDate().toString());
 
         final EditText email = (EditText) findViewById(R.id.activity_main_editText);

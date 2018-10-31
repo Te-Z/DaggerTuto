@@ -32,7 +32,7 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowProperDate() throws Exception {
-        TextView date = (TextView) activity.findViewById(R.id.tv);
+        TextView date = (TextView) activity.findViewById(R.id.activity_main_textview);
         assertEquals("Sat Oct 19 00:00:00 CET 1991", date.getText());
     }
 
