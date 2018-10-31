@@ -38,8 +38,11 @@ public class MainActivityTest {
 
     @Test
     public void shouldStoreProperEmail() throws Exception {
+        // TODO: sauvegarder un autre email avant
         SharedPrefsUtils prefsUtils = activity.prefs;
         prefsUtils.saveCurrentEmail("test@hotmail.com");
         assertEquals("test@hotmail.com", prefsUtils.getCurrentEmail());
     }
+
+    // TODO: ajouter un test où on click sur "save"
 }

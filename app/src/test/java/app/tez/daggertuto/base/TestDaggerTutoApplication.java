@@ -3,7 +3,7 @@ package app.tez.daggertuto.base;
 import app.tez.daggertuto.DaggerTutoApplication;
 import app.tez.daggertuto.di.AppModule;
 import app.tez.daggertuto.di.DaggerTestComponent;
-import app.tez.daggertuto.di.StorageTestModule;
+import app.tez.daggertuto.di.StorageModule;
 import app.tez.daggertuto.di.TestComponent;
 import app.tez.daggertuto.di.TutoComponent;
 import app.tez.daggertuto.di.UtilsTestModule;
@@ -18,7 +18,7 @@ public class TestDaggerTutoApplication extends DaggerTutoApplication {
         TestComponent mComponent = DaggerTestComponent.builder()
                 .appModule(new AppModule(this))
                 .utilsTestModule(new UtilsTestModule())
-                .storageTestModule(new StorageTestModule())
+                .storageModule(new StorageModule())
                 .build();
 
         mComponent.inject(this);
