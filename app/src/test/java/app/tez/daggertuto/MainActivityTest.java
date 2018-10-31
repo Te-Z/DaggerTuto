@@ -1,6 +1,5 @@
 package app.tez.daggertuto;
 
-import android.content.SharedPreferences;
 import android.widget.TextView;
 
 import org.junit.Before;
@@ -14,7 +13,6 @@ import app.tez.daggertuto.base.TestDaggerTutoApplication;
 import app.tez.daggertuto.utils.SharedPrefsUtils;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotEquals;
 
 /**
@@ -36,13 +34,6 @@ public class MainActivityTest {
     public void shouldShowProperDate() throws Exception {
         TextView date = (TextView) activity.findViewById(R.id.tv);
         assertEquals("Sat Oct 19 00:00:00 CET 1991", date.getText());
-    }
-
-    @Test
-    public void shouldGetProperEmail() throws Exception {
-        SharedPrefsUtils prefsUtils = activity.prefs;
-        assertNotEquals("jon_snow@gmail.com", prefsUtils.getCurrentEmail());
-        assertEquals("toto@mail.fr", prefsUtils.getCurrentEmail());
     }
 
     @Test

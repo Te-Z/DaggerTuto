@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -26,13 +29,19 @@ public class MainActivity extends AppCompatActivity {
 
         ((DaggerTutoApplication) getApplication()).getTutoComponent().inject(this);
 
-        Log.d(TAG, "onCreate: value before the change " + prefs.getCurrentEmail());
-
-        prefs.saveCurrentEmail("toto@mail.fr");
-
-        Log.d(TAG, "onCreate: value after the change " + prefs.getCurrentEmail());
-
-        TextView textview = (TextView) findViewById(R.id.tv);
+        final TextView textview = (TextView) findViewById(R.id.tv);
         textview.setText(dateUtils.getCurrentDate().toString());
+
+        final EditText email = (EditText) findViewById(R.id.activity_main_editText);
+        Button saveBtn = (Button) findViewById(R.id.activity_main_button);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String savedEmail = email.getText().toString();
+                prefs.saveCurrentEmail(savedEmail);
+                textview.setText(prefs.getCurrentEmail());
+            }
+        });
     }
 }
