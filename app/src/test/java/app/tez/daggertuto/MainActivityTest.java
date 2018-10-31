@@ -1,5 +1,7 @@
 package app.tez.daggertuto;
 
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.junit.Before;
@@ -32,17 +34,29 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowProperDate() throws Exception {
-        TextView date = (TextView) activity.findViewById(R.id.activity_main_textview);
+        TextView date = (TextView) activity.findViewById(R.id.activity_main_date);
         assertEquals("Sat Oct 19 00:00:00 CET 1991", date.getText());
     }
 
     @Test
     public void shouldStoreProperEmail() throws Exception {
-        // TODO: sauvegarder un autre email avant
         SharedPrefsUtils prefsUtils = activity.prefs;
+        prefsUtils.saveCurrentEmail("elvis@hotmail.com");
+
         prefsUtils.saveCurrentEmail("test@hotmail.com");
         assertEquals("test@hotmail.com", prefsUtils.getCurrentEmail());
     }
 
-    // TODO: ajouter un test où on click sur "save"
+    @Test
+    public void shouldDisplayProperEmail() throws Exception {
+        // Before test
+        EditText editText = (EditText) activity.findViewById(R.id.activity_main_editText);
+        editText.setText("elvis@hotmail.com");
+        Button button = (Button) activity.findViewById(R.id.activity_main_button);
+        button.performClick();
+
+        // Actual test
+        TextView textView = (TextView) activity.findViewById(R.id.activity_main_saved_email);
+        assertEquals("elvis@hotmail.com", textView.getText());
+    }
 }

@@ -16,6 +16,7 @@ import app.tez.daggertuto.di.AppModule;
 import app.tez.daggertuto.di.DaggerAndroidTestComponent;
 import app.tez.daggertuto.di.StorageModule;
 import app.tez.daggertuto.di.UtilsTestModule;
+import app.tez.daggertuto.utils.SharedPrefsUtils;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -54,14 +55,18 @@ public class MainActivityAndroidTest {
 
     @Test
     public void isTheRightDateDisplaying(){
-        onView(withId(R.id.activity_main_textview)).check(matches(withText("Sat Oct 19 00:00:00 GMT+01:00 1991")));
+        onView(withId(R.id.activity_main_date)).check(matches(withText("Sat Oct 19 00:00:00 GMT+01:00 1991")));
     }
 
     @Test
     public void isTheRightEmailSaving(){
-        // TODO: sauvegarder un autre email avant de faire ce test
+        // Before test
+        SharedPrefsUtils prefsUtils = mActivityTestRule.getActivity().prefs;
+        prefsUtils.saveCurrentEmail("elvis@hotmail.com");
+
+        // Actual test
         onView(withId(R.id.activity_main_editText)).perform(typeText("hello@world.fr"));
         onView(withId(R.id.activity_main_button)).perform(click());
-        onView(withId(R.id.activity_main_textview)).check(matches(withText("hello@world.fr")));
+        onView(withId(R.id.activity_main_saved_email)).check(matches(withText("hello@world.fr")));
     }
 }

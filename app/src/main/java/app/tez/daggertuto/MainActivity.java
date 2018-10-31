@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
+    private TextView dateTv, emailTv;
+
     @Inject SharedPrefsUtils prefs;
     @Inject DateUtils dateUtils;
 
@@ -23,12 +25,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.configureDI();
+        this.setCurrentDate();
+        this.setEmailForm();
+    }
 
+    private void configureDI(){
         ((DaggerTutoApplication) getApplication()).getTutoComponent().inject(this);
+    }
 
-        final TextView textview = (TextView) findViewById(R.id.activity_main_textview);
-        textview.setText(dateUtils.getCurrentDate().toString());
+    private void setCurrentDate(){
+        dateTv = (TextView) findViewById(R.id.activity_main_date);
+        dateTv.setText(dateUtils.getCurrentDate().toString());
+    }
 
+    private void setEmailForm(){
+        emailTv = (TextView) findViewById(R.id.activity_main_saved_email);
         final EditText email = (EditText) findViewById(R.id.activity_main_editText);
         Button saveBtn = (Button) findViewById(R.id.activity_main_button);
 
@@ -37,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String savedEmail = email.getText().toString();
                 prefs.saveCurrentEmail(savedEmail);
-                textview.setText(prefs.getCurrentEmail());
+                emailTv.setText(prefs.getCurrentEmail());
             }
         });
     }
